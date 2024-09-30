@@ -16,6 +16,11 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
+tasks.withType<JavaCompile>().configureEach {
+    options.compilerArgs.addAll(listOf("--module-path", classpath.asPath))
+    options.annotationProcessorPath = configurations["annotationProcessor"]
+}
+
 tasks.test {
     useJUnitPlatform()
 }
